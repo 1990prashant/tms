@@ -32,3 +32,11 @@
  .btn-primary:hover {
    background: #000;
  }
+
+ .nav li {
+   color: red;
+ }
+
+ .navbar-inverse .navbar-nav>li>a {
+   color: red;
+ }

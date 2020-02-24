@@ -12,7 +12,7 @@ end
 
 user = User.find_or_initialize_by(email: "admin@tms.com")
 if user.new_record?
-  user.roles.new(name: "admin")
+  user.user_roles.new(role_id: Role.where(name: "admin@tms.com").first.id)
   user.first_name = "Project"
   user.last_name = "Manager"
   user.password = "123456"

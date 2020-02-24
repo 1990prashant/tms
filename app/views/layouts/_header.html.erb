@@ -17,9 +17,10 @@
             <%= link_to "Todo", todos_url %>
           </li>
         <% end %>
+        
         <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-          </li>
+          <%= link_to "#{current_user.full_name} Log out", destroy_user_session_path, method: :delete %>
+        </li>
       <% else %>
         <li class=<%= 'active' if params[:controller] == "devise/sessions" && params[:action] == 'new' %>>
           <%= link_to "Sign in", new_user_session_url %>
