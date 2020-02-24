@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   # GET /projects/1
@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/add_todo
   def add_todo
+    @todos = @project.todos
   end
 
   # POST /projects
@@ -52,6 +53,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
+      debugger
       if @project.update(project_params)
         format.html { redirect_to projects_url, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
@@ -93,6 +95,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
+      params[:project][:developer_ids] << current_user.id.to_s if params[:project].present? && params[:project][:developer_ids].present?
       params.require(:project).permit(:name, :description, developer_ids: [], todos_attributes: [:id, :title, :description, :_destroy])
     end
 end

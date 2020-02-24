@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Step to setup locally
 
-Things you may want to cover:
+* Required ruby version - 2.6.3
 
-* Ruby version
+* bundle install
 
-* System dependencies
+* rake db:create
 
-* Configuration
+* rake db:migrate
 
-* Database creation
+* rake db:seed //This will create an admin user and roles into the system
 
-* Database initialization
+* rails s
 
-* How to run the test suite
+Admin user can only create a project can add developer by clicking on **Add Developer** button on the **Projects** can create todos by clicking on **Add Todo** button on the same page after that they can assign that todos to the developer by clicking on **Assign Todos** button on the same page. Admin user can edit and delete the projects/todos.
 
-* Services (job queues, cache servers, search engines, etc.)
+Developer can see the assigned todos and can change their states.
 
-* Deployment instructions
-
-* ...
+You can visit https://tms-prashant.herokuapp.com/ for the demo

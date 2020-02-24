@@ -2,12 +2,12 @@ class ProjectDeveloper < ApplicationRecord
   belongs_to :project
   belongs_to :developer, class_name: "User", foreign_key: :developer_id
 
-  before_destroy :skip_creator
+  validate :creator
 
   private
 
-    def skip_creator
-      self.is_creator == false
+    def creator
+      !self.is_creator
     end
 
 end

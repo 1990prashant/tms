@@ -22,6 +22,8 @@
                       add_developer_project_path(project), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.add_todo', :default => t("helpers.links.add_todo")),
                       add_todo_project_path(project), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.assign_todos', :default => t("helpers.links.assign_todos")),
+                      project_path(project), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_path(project), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

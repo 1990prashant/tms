@@ -14,6 +14,7 @@
       </div>
     </div>
   <% end %>
+
   <legend>
     Project Details
   </legend>
@@ -35,7 +36,37 @@
     </div>
   </div>
 
-  <legend>Add Todos</legend>
+  <legend>
+    Existing Todos
+  </legend>
+  <% if @todos.present? %>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <table class="table table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Developer</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            <% @todos.each do |todo| %>
+              <tr>
+                <td><%= todo.title %></td>
+                <td><%= todo.developer.try(:full_name) %></td>
+                <td><%= link_to "Edit", edit_todo_url(todo), class: 'btn btn-default btn-xs' %>
+                  <%= link_to "Edit", todo_url(todo), method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+
+  <legend>
+    Add New Todos
+  </legend>
   <div class="todo-list">
     <%= render partial: 'todo' %>
   </div>
