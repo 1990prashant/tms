@@ -1,0 +1,46 @@
+<%- model_class = Project -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <legend>Project Details</legend>
+    <strong><%= model_class.human_attribute_name(:name) %>:</strong>
+    <%= @project.name %>
+    <br>
+    <strong><%= model_class.human_attribute_name(:description) %>:</strong>
+    <%= @project.description %>
+  </div>
+
+  <div class="col-md-8 col-sm-6">
+    <legend>Todos List</legend>
+    <table class="table table-striped">
+      <thead>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Developer</th>
+      </thead>
+      <%= form_tag update_todos_project_path(@project), method: :put do |f| %>
+        <% @project.todos.each do |todo| %>
+          <%= hidden_field_tag "todos[][id]", todo.id %>
+          <tbody>
+            <td><%= todo.title %></td>
+            <td><%= todo.description %></td>
+            <td><%= select_tag "todos[][developer_id]", options_from_collection_for_select(@developers, 'id', 'full_name', todo.developer_id), class: 'form-control' %></td>
+          </tbody>
+        <% end %>
+        <tfoot>
+          <td colspan="3"><%= submit_tag "Update", class: 'btn btn-primary' %></td>
+        </tfoot>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+              projects_path, :class => 'btn btn-default'  %>
+  </div>
+</div>

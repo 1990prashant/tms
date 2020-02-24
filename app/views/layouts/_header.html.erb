@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse">
+  <div class="header container-fluid">
+    <div class="navbar-header">
+      <%= link_to "TMS", root_url, class: "navbar-brand" %>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <li class=<%= 'active' if params[:controller] == "projects" && params[:action] == 'index' %>>
+            <%= link_to "Projects", projects_url %>
+          </li>
+          <li class=<%= 'active' if params[:controller] == "users" && params[:action] == 'index' %>>
+            <%= link_to "Developers", "users_url" %>
+          </li>
+        <% else %>
+          <li class=<%= 'active' if params[:controller] == "todos" && params[:action] == 'index' %>>
+            <%= link_to "Todo", todos_url %>
+          </li>
+        <% end %>
+        <li>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+          </li>
+      <% else %>
+        <li class=<%= 'active' if params[:controller] == "devise/sessions" && params[:action] == 'new' %>>
+          <%= link_to "Sign in", new_user_session_url %>
+        </li>
+        <li class=<%= 'active' if params[:controller] == "devise/registrations" && params[:action] == 'new' %>>
+          <%= link_to "Sign up", new_user_registration_url %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

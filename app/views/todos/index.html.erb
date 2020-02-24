@@ -1,0 +1,38 @@
+<%- model_class = Todo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:project_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @todos.present? %>
+      <% @todos.each do |todo| %>
+        <tr>
+          <td><%= link_to todo.id, todo_path(todo) %></td>
+          <td><%= todo.title %></td>
+          <td><%= todo.description %></td>
+          <td class="todo-td"><%= select_tag :todo_status, options_for_select(Todo.statuses, selected: todo.states.last.try(:name)), class: "todo-status" %></td>
+          <td><%= todo.project.try(:name) %></td>
+          <td class="btn-td">
+            <%= link_to t('.show', :default => t("helpers.links.show")),
+                        todo_path(todo), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.update', :default => t("helpers.links.update")),
+                        "#", :class => 'btn btn-primary btn-xs todo-btn' %>
+            <%= hidden_field_tag 'todo_id', todo.id, class: 'todo-id' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <td colspan="7">No assigned todos for you</td>
+    <% end %>
+  </tbody>
+</table>
