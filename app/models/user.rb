@@ -18,4 +18,11 @@ class User < ApplicationRecord
     [first_name, last_name].join(" ")
   end
 
+  def self.test
+    data = {}
+    data['a'] = 1
+    data['b'] = 2
+    data
+  end
+
 end

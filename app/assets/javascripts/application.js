@@ -36,3 +36,15 @@ $(document).ready(function(){
     return false;
   });
 });
+
+// $(window).onload(function(){
+//   console.log("Hello");
+// });
+
+window.onload(function(){
+  console.log("Hello");
+})
+
+$(document).ready(function(){
+  console.log("Hi");
+});
