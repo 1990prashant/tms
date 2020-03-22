@@ -1,6 +1,6 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
+# orbs:
+#   ruby: circleci/ruby@0.1.2 
 
 jobs:
   # build:
@@ -14,12 +14,6 @@ jobs:
   #         command: bundle -v
   #     - ruby/bundle-install
 
-  build:
-     docker:
-       - image: circleci/ruby:2.6.3p62
-     steps:
-       - checkout
-       - run: echo "A first hello"
   build:
     docker:
       - image: circleci/ruby:2.6.3p62
