@@ -18,6 +18,4 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run:
-        name: Installing Gems
-        command: bundle install
+      - run: bundle install
